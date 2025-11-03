@@ -10,10 +10,49 @@ import {
   Link,
   useColorMode,
   IconButton,
-  Image
+  Image,
+  SimpleGrid
 } from '@chakra-ui/react';
 import { FaSun, FaMoon, FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'; // Icons!
-import profilePic from './assets/profile.png'; // Make sure profile.jpg is in src/assets/
+import profilePic from './assets/profile.png'; // Make sure profile.png is in src/assets/
+import { ProjectCard } from './components/ProjectCard.jsx'; // Make sure this path is correct
+
+// === START: Project Data ===
+// 1. Change `language` to `languages` and use an array
+const projectsData = [
+    {
+    title: 'CarNeeds.lk',
+    description: 'An AI-powered Platform for Buying, Selling, & Renting Vehicles in Sri Lanka.',
+    href: 'https://github.com/mrYumeth/car-find-ai-lk', 
+    languages: ['TypeScript', 'JavaScript', 'Python', 'HTML', 'CSS'], 
+  },
+  {
+    title: 'Personal Portfolio',
+    description: 'This very website! Built with React, Chakra UI, and hosted on GitHub Pages.',
+    href: 'https://github.com/mrYumeth/my-portfolio', 
+    languages: ['JavaScript', 'HTML'], 
+  },
+  {
+    title: 'Star Events - Contributed Project',
+    description: 'A ticket booking website for all kinds of events.',
+    href: 'https://github.com/mrYumeth/StarEvents', 
+    languages: ['C#', 'HTML', 'CSS', 'Javascript'], 
+  },
+    {
+    title: 'Urban Hotel - Contributed Project',
+    description: 'A full-stack hotel management system for booking rooms, managing reservations, and handling hotel operations.',
+    href: 'https://github.com/Dhinal2/urban-hotel', 
+    languages: ['TypeScript', 'Javascript',], 
+  },
+    {
+    title: 'Banking Bot - Contributed Project',
+    description: 'Chatbot designed to assist with common banking queries, built using Java and Natural Language Processing techniques.',
+    href: 'https://github.com/Dhinal2/BankingBot', 
+    languages: ['Java'], 
+  },
+];
+// === END: Project Data ===
+
 
 // This is our main App component
 function App() {
@@ -32,6 +71,7 @@ function App() {
           <HStack as="nav" spacing={4}>
             {/* HStack arranges items horizontally */}
             <Link href="#skills">Skills</Link>
+            <Link href="#projects">Projects</Link>
             <Link href="#experience">Experience</Link>
             <Link href="#education">Education</Link>
             {/* This is our dark mode toggle button! */}
@@ -64,7 +104,7 @@ function App() {
                 <Heading as="h2" size="xl" mb={4} textAlign="center">About Me</Heading>
                 <Text fontSize="lg" maxW="60ch" mx="auto" textAlign="center">
                   I am a dedicated and motivated individual willing to contribute to the company's growth. 
-                  I look forward to becoming a useful asset while sharpening my skills for the betterment of the company.
+                  I look forward to becoming an useful asset while sharpening my skills for the betterment of the company.
                 </Text>
               </Box>
             </VStack>
@@ -93,11 +133,28 @@ function App() {
             </HStack>
           </Box>
 
+          {/* === PROJECTS SECTION (NEW) === */}
+          <Box as="section" id="projects" textAlign="center" w="100%">
+            <Heading as="h2" size="xl" mb={8} textAlign="center">
+              Projects
+            </Heading>
+            <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={10}>
+              {projectsData.map((project) => (
+                <ProjectCard
+                  key={project.title}
+                  title={project.title}
+                  description={project.description}
+                  href={project.href}
+                  languages={project.languages} // <-- 2. Pass the array here
+                />
+              ))}
+            </SimpleGrid>
+          </Box>
+
+
           {/* === EXPERIENCE SECTION === */}
-          {/* 1. Changed textAlign from "start" to "center" */}
           <Box as="section" id="experience" textAlign="center" w="100%">
             <Heading as="h2" size="xl" mb={8} textAlign="center">Work Experience</Heading>
-            {/* 2. Changed align from "start" to "center" */}
             <VStack spacing={5} align="center" maxW="60ch" mx="auto">
               <Box>
                 <Heading as="h3" size="md">Graphic Designer & Sales Representative</Heading>
@@ -111,10 +168,8 @@ function App() {
           </Box>
 
           {/* === EDUCATION SECTION === */}
-          {/* 3. Changed textAlign from "start" to "center" */}
           <Box as="section" id="education" textAlign="center" w="100%">
             <Heading as="h2" size="xl" mb={8} textAlign="center">Education</Heading>
-            {/* 4. Changed align from "start" to "center" */}
             <VStack spacing={5} align="center" maxW="60ch" mx="auto">
               <Box>
                 <Heading as="h3" size="md">BEng (Hons) in Software Engineering</Heading>
@@ -134,6 +189,9 @@ function App() {
       <Box as="footer" mt={20} p={10} bg={colorMode === 'light' ? 'gray.100' : 'gray.900'} textAlign="center">
         <Heading as="h2" size="lg" mb={4}>Contact Me</Heading>
         <HStack justify="center" spacing={5}>
+          <Link href="mailto:yumethindiv123@gmail.com" isExternal>
+            <IconButton icon={<FaEnvelope />} aria-label="Email" size="lg" />
+          </Link>
           <Link href="https://github.com/mrYumeth" isExternal>
             <IconButton icon={<FaGithub />} aria-label="GitHub" size="lg" />
           </Link>
