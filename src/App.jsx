@@ -117,7 +117,7 @@ function App() {
               <VStack>
                 <Heading as="h3" size="md">Technical Skills</Heading>
                 <Box>
-                  {['Database Design (SQL)', 'Cybersecurity Fundamentals', 'Power BI', 'Troubleshooting'].map((skill) => (
+                  {['Database Design', 'Troubleshooting', 'Object-Oriented Programming (OOP)', 'Data Visualization', 'Computing Research'].map((skill) => (
                     <Tag size="lg" colorScheme="blue" m={1} key={skill}>{skill}</Tag>
                   ))}
                 </Box>
@@ -125,7 +125,7 @@ function App() {
               <VStack>
                 <Heading as="h3" size="md">Soft Skills</Heading>
                 <Box>
-                  {['Communication', 'Eager to Learn', 'Attention to Detail'].map((skill) => (
+                  {['Problem-Solving', 'Teamwork & Collaboration', 'Attention to Detail', 'Adaptability', 'Time Management', 'Creativity'].map((skill) => (
                     <Tag size="lg" colorScheme="green" m={1} key={skill}>{skill}</Tag>
                   ))}
                 </Box>
