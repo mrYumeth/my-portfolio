@@ -11,17 +11,17 @@ import {
   IconButton,
   Image,
   SimpleGrid,
-  Card, // 1. Import Card components
+  Card, 
   CardHeader,
   CardBody,
   Stack,
-  useColorModeValue, // 2. Import useColorModeValue
+  useColorModeValue, 
 } from '@chakra-ui/react';
 import { FaSun, FaMoon, FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import profilePic from './assets/profile.png';
 import { ProjectCard } from './components/ProjectCard.jsx';
 
-// === START: Project Data ===
+// Project Data 
 const projectsData = [
   {
     title: 'CarNeeds.lk',
@@ -54,10 +54,8 @@ const projectsData = [
     languages: ['Java'],
   },
 ];
-// === END: Project Data ===
 
-// 3. === START: New Skills Data ===
-// Moved your hardcoded skills here for easy editing
+// Skills Data 
 const technicalSkills = [
   'Object-Oriented Programming (OOP)',
   'Database Design',
@@ -74,9 +72,8 @@ const softSkills = [
   'Time Management',
   'Creativity',
 ];
-// === END: New Skills Data ===
 
-// 4. === START: New Experience Data ===
+// Experience Data 
 const experienceData = [
     {
     role: 'Graphic Designer & Sales Representative',
@@ -89,14 +86,13 @@ const experienceData = [
     date: '2024 - 2025',
   },
 ];
-// === END: New Experience Data ===
 
-// 5. === START: New Education Data ===
+// Education Data 
 const educationData = [
   {
     degree: 'BEng (Hons) in Software Engineering',
     school: 'London Metropolitan University (via Esoft Metro Campus)',
-    date: '2025 - Present', // Assuming 2025 from CV
+    date: '2025 - Present', 
   },
   {
     degree: 'Higher National Diploma in Computing',
@@ -109,16 +105,14 @@ const educationData = [
     date: '2011 - 2021',
   },
 ];
-// === END: New Education Data ===
 
 function App() {
   const { colorMode, toggleColorMode } = useColorMode();
-  // 6. Define card background color
   const cardBg = useColorModeValue('gray.50', 'gray.700');
 
   return (
     <Box fontSize="xl">
-      {/* === HEADER / NAVBAR === */}
+      {/* HEADER / NAVBAR */}
       <Box as="header" w="100%" p={4} boxShadow="md" position="sticky" top={0} bg={colorMode === 'light' ? 'white' : 'gray.800'} zIndex={10}>
         <Container maxW="container.lg" display="flex" justifyContent="space-between" alignItems="center">
           <Heading as="h1" size="lg">
@@ -138,17 +132,17 @@ function App() {
         </Container>
       </Box>
 
-      {/* === MAIN CONTENT === */}
+      {/* MAIN CONTENT */}
       <Container maxW="container.lg" p={4}>
         <VStack spacing={20} as="main" my={10} align="center">
 
-          {/* 7. === START: MODERNIZED ABOUT ME SECTION === */}
+          {/* ABOUT ME SECTION */}
           <Box as="section" id="about" w="100%">
             <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} alignItems="center">
               <VStack align="center">
                 <Image
                   borderRadius="full"
-                  boxSize="250px" // Made image slightly larger
+                  boxSize="250px" 
                   src={profilePic}
                   alt="Yumeth Thenuwara"
                   border="4px solid"
@@ -166,9 +160,8 @@ function App() {
               </VStack>
             </SimpleGrid>
           </Box>
-          {/* === END: MODERNIZED ABOUT ME SECTION === */}
 
-          {/* 8. === START: MODERNIZED SKILLS SECTION === */}
+          {/* SKILLS SECTION */}
           <Box as="section" id="skills" w="100%">
             <Heading as="h2" size="xl" mb={8} textAlign="center">Skills</Heading>
             <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} maxW="container.md" mx="auto">
@@ -194,9 +187,8 @@ function App() {
               </VStack>
             </SimpleGrid>
           </Box>
-          {/* === END: MODERNIZED SKILLS SECTION === */}
 
-          {/* === PROJECTS SECTION === */}
+          {/* PROJECTS SECTION */}
           <Box as="section" id="projects" textAlign="center" w="100%">
             <Heading as="h2" size="xl" mb={8} textAlign="center">
               Projects
@@ -214,7 +206,7 @@ function App() {
             </SimpleGrid>
           </Box>
 
-          {/* 9. === START: MODERNIZED EXPERIENCE SECTION === */}
+          {/* EXPERIENCE SECTION */}
           <Box as="section" id="experience" w="100%">
             <Heading as="h2" size="xl" mb={8} textAlign="center">
               Work Experience
@@ -233,9 +225,8 @@ function App() {
               ))}
             </Stack>
           </Box>
-          {/* === END: MODERNIZED EXPERIENCE SECTION === */}
 
-          {/* 10. === START: MODERNIZED EDUCATION SECTION === */}
+          {/* EDUCATION SECTION */}
           <Box as="section" id="education" w="100%">
             <Heading as="h2" size="xl" mb={8} textAlign="center">
               Education
@@ -254,12 +245,11 @@ function App() {
               ))}
             </Stack>
           </Box>
-          {/* === END: MODERNIZED EDUCATION SECTION === */}
 
         </VStack>
       </Container>
 
-      {/* === FOOTER / CONTACT === */}
+      {/* FOOTER / CONTACT */}
       <Box as="footer" mt={20} p={10} bg={colorMode === 'light' ? 'gray.100' : 'gray.900'} textAlign="center">
         <Heading as="h2" size="lg" mb={4}>Contact Me</Heading>
         <HStack justify="center" spacing={5}>

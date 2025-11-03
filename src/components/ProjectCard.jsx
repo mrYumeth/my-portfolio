@@ -22,7 +22,7 @@ const languageColors = {
   default: 'green.500',
 };
 
-// 2. Change the prop from `language` to `languages`
+// Adding of languages
 export const ProjectCard = ({ title, description, href, languages }) => {
   const cardBg = useColorModeValue('white', 'gray.800');
 
@@ -54,11 +54,10 @@ export const ProjectCard = ({ title, description, href, languages }) => {
           <Text mb={4}>{description}</Text>
         </Box>
 
-        {/* 3. Check if the `languages` array exists and map over it */}
+        {/* Languages array exists and maping */}
         {languages && languages.length > 0 && (
-          <HStack spacing={4} wrap="wrap"> {/* This HStack will wrap languages to the next line if needed */}
+          <HStack spacing={4} wrap="wrap"> 
             {languages.map((lang) => {
-              // Get color for this specific language
               const langColor =
                 languageColors[lang?.toLowerCase()] || languageColors.default;
 
