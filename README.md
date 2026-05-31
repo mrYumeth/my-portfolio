@@ -1,16 +1,80 @@
-# React + Vite
+# Yumeth's Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive personal portfolio website built to showcase projects, skills, and professional experience. 
 
-Currently, two official plugins are available:
+##  Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Check out the live site here:** (https://www.yumeth.me)
 
-## React Compiler
+This project is hosted using GitHub Pages and uses a custom domain.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+*   **Frontend Framework:** [React](https://reactjs.org/)
+*   **Build Tool:** [Vite](https://vitejs.dev/) - For lightning-fast HMR and optimized builds.
+*   **Language:** JavaScript (ES6+) / JSX
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Features
+
+*   **Fast Performance:** Bundled with Vite for a highly optimized and fast-loading web experience.
+*   **Component-Driven:** Built utilizing modular React components, including a dedicated `ProjectCard` component for showcasing individual portfolio pieces.
+*   **Custom Domain Integration:** Configured seamlessly with a `CNAME` file for personalized routing.
+
+## Project Structure
+
+```text
+my-portfolio-main/
+├── public/
+│   ├── CNAME              # Custom domain configuration (www.yumeth.me)
+│   ├── favicon.png        # Site favicon
+│   └── vite.svg           # Vite logo
+├── src/
+│   ├── assets/            # Static assets (profile.png, react.svg)
+│   ├── components/        # Reusable React components (ProjectCard.jsx)
+│   ├── App.jsx            # Main application component
+│   └── main.jsx           # React DOM entry point
+├── index.html             # Main HTML template
+├── package.json           # Project dependencies and scripts
+├── eslint.config.js       # ESLint configuration for code quality
+└── vite.config.js         # Vite configuration file
+```
+
+## Local Development
+
+To run this project locally on your machine, follow these steps:
+
+### Prerequisites
+Ensure you have [Node.js](https://nodejs.org/) installed on your machine.
+
+### Installation
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/your-username/my-portfolio.git
+    cd my-portfolio-main
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+3.  **Start the development server:**
+    ```bash
+    npm run dev
+    ```
+    The application will be available at `http://localhost:5173`.
+
+## ⚙️ Building for Production
+
+To create a production-ready build, run:
+
+```bash
+npm run build
+```
+
+This will generate a `dist` directory containing the minified and optimized production files.
+
+## Deployment
+
+This project is configured for deployment on GitHub Pages. The custom domain is managed via the `public/CNAME` file, ensuring the generated site correctly resolves to `www.yumeth.me`.
