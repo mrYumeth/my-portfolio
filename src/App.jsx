@@ -5,6 +5,8 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
+import Experience from './components/Experience';
+import Education from './components/Education';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <About />
         <Skills />
         <Projects />
+        <Experience />
+        <Education />
       </main>
     </Box>
   );
