@@ -23,6 +23,12 @@ import {
 
 import profileImage from '../assets/profile/profile.png';
 
+import {
+  contactDetails,
+  emailLink,
+  whatsappLink,
+} from '../data/contact';
+
 function Hero() {
   const secondaryTextColor = useColorModeValue('gray.600', 'gray.300');
   const imageBorderColor = useColorModeValue('gray.200', 'whiteAlpha.300');
@@ -30,14 +36,6 @@ function Hero() {
     'rgba(49, 130, 206, 0.18)',
     'rgba(0, 214, 255, 0.15)',
   );
-
-  const whatsappNumber = '94776939608';
-
-  const whatsappMessage = encodeURIComponent(
-    'Hi Yumeth, I visited your portfolio and would like to connect with you.',
-  );
-
-  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
   const socialButtonBg = useColorModeValue(
   'gray.100',
@@ -185,7 +183,7 @@ const socialIconColor = useColorModeValue(
             <HStack spacing={3} pt={2}>
             <IconButton
                 as="a"
-                href="https://github.com/mrYumeth"
+                href={contactDetails.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Visit Yumeth's GitHub profile"
@@ -203,7 +201,7 @@ const socialIconColor = useColorModeValue(
 
             <IconButton
                 as="a"
-                href="https://www.linkedin.com/in/yumeth-thenuwara-b87985279"
+                href={contactDetails.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Visit Yumeth's LinkedIn profile"
@@ -221,7 +219,7 @@ const socialIconColor = useColorModeValue(
 
             <IconButton
                 as="a"
-                href="mailto:yumethindiv123@gmail.com"
+                href={emailLink}
                 aria-label="Email Yumeth"
                 icon={<FaEnvelope />}
                 borderRadius="full"
