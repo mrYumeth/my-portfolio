@@ -49,6 +49,33 @@ function ProjectCard({ project }) {
     'gray.100',
     'whiteAlpha.100',
   );
+  
+  const statusBadgeStyles = {
+  Featured: {
+    background: 'cyan.300',
+    color: 'gray.900',
+    borderColor: 'cyan.100',
+  },
+
+  'Team Project': {
+    background: 'orange.300',
+    color: 'gray.900',
+    borderColor: 'orange.100',
+  },
+
+  Recent: {
+    background: 'purple.500',
+    color: 'white',
+    borderColor: 'purple.200',
+  },
+};
+
+const currentStatusStyle =
+  statusBadgeStyles[project.status] || {
+    background: 'gray.600',
+    color: 'white',
+    borderColor: 'gray.300',
+  };
 
   return (
     <Box
@@ -118,17 +145,19 @@ function ProjectCard({ project }) {
           position="absolute"
           top={4}
           left={4}
-          px={3}
+          px={3.5}
           py={1.5}
           borderRadius="full"
-          colorScheme={
-            project.status === 'Featured'
-              ? 'cyan'
-              : project.status === 'Recent'
-                ? 'purple'
-                : 'orange'
-          }
-          boxShadow="md"
+          background={currentStatusStyle.background}
+          color={currentStatusStyle.color}
+          border="1px solid"
+          borderColor={currentStatusStyle.borderColor}
+          boxShadow="0 5px 16px rgba(0, 0, 0, 0.4)"
+          fontSize="xs"
+          fontWeight="800"
+          letterSpacing="wide"
+          textTransform="uppercase"
+          zIndex={2}
         >
           {project.status}
         </Badge>
