@@ -79,6 +79,7 @@ const currentStatusStyle =
 
   return (
     <Box
+      role="group"
       bg={cardBackground}
       border="1px solid"
       borderColor={cardBorder}

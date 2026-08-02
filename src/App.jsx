@@ -10,6 +10,7 @@ import Education from './components/Education';
 import Contact from './components/Contact';
 import WhatsAppButton from './components/WhatsAppButton';
 import Footer from './components/Footer';
+import AnimatedSection from './components/AnimatedSection';
 
 function App() {
   return (
@@ -18,12 +19,30 @@ function App() {
 
       <main>
         <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Education />
-        <Contact />
+
+        <AnimatedSection direction="up">
+          <About />
+        </AnimatedSection>
+
+        <AnimatedSection direction="up">
+          <Skills />
+        </AnimatedSection>
+
+        <AnimatedSection direction="up">
+          <Projects />
+        </AnimatedSection>
+
+        <AnimatedSection direction="left">
+          <Experience />
+        </AnimatedSection>
+
+        <AnimatedSection direction="right">
+          <Education />
+        </AnimatedSection>
+
+        <AnimatedSection direction="up">
+          <Contact />
+        </AnimatedSection>
       </main>
 
       <WhatsAppButton />
