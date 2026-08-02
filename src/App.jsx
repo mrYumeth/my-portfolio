@@ -20,27 +20,46 @@ function App() {
       <main>
         <Hero />
 
-        <AnimatedSection direction="up">
+        <AnimatedSection
+          direction="up"
+          duration={0.75}
+        >
           <About />
         </AnimatedSection>
 
-        <AnimatedSection direction="up">
+        <AnimatedSection
+          direction="left"
+          duration={0.75}
+        >
           <Skills />
         </AnimatedSection>
 
-        <AnimatedSection direction="up">
+        <AnimatedSection
+          direction="up"
+          distance={25}
+          scale={1}
+        >
           <Projects />
         </AnimatedSection>
 
-        <AnimatedSection direction="left">
+        <AnimatedSection
+          direction="left"
+          duration={0.75}
+        >
           <Experience />
         </AnimatedSection>
 
-        <AnimatedSection direction="right">
+        <AnimatedSection
+          direction="right"
+          duration={0.75}
+        >
           <Education />
         </AnimatedSection>
 
-        <AnimatedSection direction="up">
+        <AnimatedSection
+          direction="up"
+          duration={0.8}
+        >
           <Contact />
         </AnimatedSection>
       </main>

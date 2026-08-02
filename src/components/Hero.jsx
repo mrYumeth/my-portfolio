@@ -29,9 +29,15 @@ import {
   whatsappLink,
 } from '../data/contact';
 
+import {
+  motion,
+  useReducedMotion,
+} from 'framer-motion';
+
 function Hero() {
   const secondaryTextColor = useColorModeValue('gray.600', 'gray.300');
   const imageBorderColor = useColorModeValue('gray.200', 'whiteAlpha.300');
+  const shouldReduceMotion = useReducedMotion();
   const backgroundGlow = useColorModeValue(
     'rgba(49, 130, 206, 0.18)',
     'rgba(0, 214, 255, 0.15)',
@@ -254,35 +260,88 @@ const socialIconColor = useColorModeValue(
           </VStack>
 
           {/* Profile image */}
-          <Box
-            order={{ base: 1, lg: 2 }}
-            display="flex"
-            justifyContent="center"
-            position="relative"
-          >
-            <Box
-              position="absolute"
-              width={{ base: '230px', md: '330px' }}
-              height={{ base: '230px', md: '330px' }}
-              borderRadius="full"
-              bgGradient="linear(to-br, cyan.400, blue.500, purple.500)"
-              filter="blur(25px)"
-              opacity="0.35"
-            />
+<Box
+  order={{ base: 1, lg: 2 }}
+  display="flex"
+  justifyContent="center"
+  position="relative"
+>
+  <motion.div
+    initial={
+      shouldReduceMotion
+        ? false
+        : {
+            opacity: 0,
+            scale: 0.85,
+            rotate: -3,
+          }
+    }
+    animate={
+      shouldReduceMotion
+        ? {}
+        : {
+            opacity: 1,
+            scale: 1,
+            rotate: 0,
+            y: [0, -10, 0],
+          }
+    }
+    transition={{
+      opacity: {
+        duration: 0.7,
+      },
+      scale: {
+        duration: 0.7,
+        ease: [0.22, 1, 0.36, 1],
+      },
+      rotate: {
+        duration: 0.7,
+      },
+      y: {
+        duration: 4.5,
+        repeat: Infinity,
+        ease: 'easeInOut',
+        delay: 0.8,
+      },
+    }}
+    style={{
+      position: 'relative',
+      display: 'flex',
+      justifyContent: 'center',
+    }}
+  >
+    <Box
+      position="absolute"
+      width={{ base: '230px', md: '330px' }}
+      height={{ base: '230px', md: '330px' }}
+      borderRadius="full"
+      bgGradient="linear(to-br, cyan.400, blue.500, purple.500)"
+      filter="blur(25px)"
+      opacity="0.35"
+    />
 
             <Image
-              src={profileImage}
-              alt="Yumeth Thenuwara"
-              width={{ base: '220px', sm: '260px', md: '320px' }}
-              height={{ base: '220px', sm: '260px', md: '320px' }}
-              borderRadius="full"
-              objectFit="cover"
-              position="relative"
-              border="5px solid"
-              borderColor={imageBorderColor}
-              boxShadow="0 25px 60px rgba(0, 0, 0, 0.35)"
+            src={profileImage}
+            alt="Yumeth Thenuwara"
+            width={{
+                base: '220px',
+                sm: '260px',
+                md: '320px',
+            }}
+            height={{
+                base: '220px',
+                sm: '260px',
+                md: '320px',
+            }}
+            borderRadius="full"
+            objectFit="cover"
+            position="relative"
+            border="5px solid"
+            borderColor={imageBorderColor}
+            boxShadow="0 25px 60px rgba(0, 0, 0, 0.35)"
             />
-          </Box>
+        </motion.div>
+        </Box>
         </SimpleGrid>
       </Container>
     </Box>

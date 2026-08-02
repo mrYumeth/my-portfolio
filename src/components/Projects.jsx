@@ -12,6 +12,11 @@ import {
 import ProjectCard from './ProjectCard';
 import { projects } from '../data/projects';
 
+import {
+  motion,
+  useReducedMotion,
+} from 'framer-motion';
+
 function Projects() {
   const sectionBackground = useColorModeValue(
     'gray.50',
@@ -22,6 +27,8 @@ function Projects() {
     'gray.600',
     'gray.300',
   );
+
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <Box
@@ -83,12 +90,45 @@ function Projects() {
           spacing={{ base: 6, md: 8 }}
           alignItems="stretch"
         >
-          {projects.map((project) => (
-            <ProjectCard
-              key={project.title}
-              project={project}
-            />
-          ))}
+        {projects.map((project, index) => (
+        <motion.div
+            key={project.title}
+            initial={
+            shouldReduceMotion
+                ? false
+                : {
+                    opacity: 0,
+                    y: 35,
+                    scale: 0.97,
+                    filter: 'blur(6px)',
+                }
+            }
+            whileInView={
+            shouldReduceMotion
+                ? {}
+                : {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    filter: 'blur(0px)',
+                }
+            }
+            viewport={{
+            once: true,
+            amount: 0.15,
+            }}
+            transition={{
+            duration: 0.55,
+            delay: index * 0.08,
+            ease: [0.22, 1, 0.36, 1],
+            }}
+            style={{
+            height: '100%',
+            }}
+        >
+            <ProjectCard project={project} />
+        </motion.div>
+        ))}
         </SimpleGrid>
       </Container>
     </Box>
