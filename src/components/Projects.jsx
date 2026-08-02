@@ -1,52 +1,98 @@
-export const projects = [
-  {
-    title: 'Mobile Data Capture & Web Sync',
-    description:
-      'An offline-first Flutter data collection application connected to a cloud-based web management platform.',
-    image: '/projects/mobile-data-sync.webp',
-    technologies: [
-      'Flutter',
-      'React',
-      'Node.js',
-      'Express',
-      'PostgreSQL',
-      'Supabase',
-    ],
-    github:
-      'https://github.com/mrYumeth/mobile-data-capture-web-sync',
-    demo: null,
-    featured: true,
-    category: 'Full Stack',
-  },
-  {
-    title: 'Legal Document Editor',
-    description:
-      'A print-accurate WYSIWYG legal document editor with real-time pagination and automatic page numbering.',
-    image: '/projects/legal-editor.webp',
-    technologies: [
-      'Next.js',
-      'TypeScript',
-      'Tiptap',
-      'ProseMirror',
-      'Tailwind CSS',
-    ],
-    github:
-      'https://github.com/mrYumeth/tiptap-legal-editor',
-    demo:
-      'YOUR_CURRENT_DEMO_URL',
-    featured: true,
-    category: 'Web Application',
-  },
-  {
-    title: 'Luma Music Player',
-    description:
-      'An offline Windows music player with metadata, album artwork, playlists, favourites and persistent sessions.',
-    image: '/projects/luma-music.webp',
-    technologies: ['Flutter', 'Dart', 'SQLite', 'just_audio'],
-    github:
-      'https://github.com/mrYumeth/luma_music',
-    demo: null,
-    featured: true,
-    category: 'Desktop Application',
-  },
-];
+import {
+  Badge,
+  Box,
+  Container,
+  Heading,
+  SimpleGrid,
+  Text,
+  useColorModeValue,
+  VStack,
+} from '@chakra-ui/react';
+
+import ProjectCard from './ProjectCard';
+import { projects } from '../data/projects';
+
+function Projects() {
+  const sectionBackground = useColorModeValue(
+    'gray.50',
+    'whiteAlpha.50',
+  );
+
+  const secondaryText = useColorModeValue(
+    'gray.600',
+    'gray.300',
+  );
+
+  return (
+    <Box
+      as="section"
+      id="projects"
+      py={{ base: 16, md: 24 }}
+      bg={sectionBackground}
+    >
+      <Container
+        maxW="1200px"
+        px={{ base: 5, sm: 6, md: 8 }}
+      >
+        <VStack
+          maxW="760px"
+          mx="auto"
+          mb={{ base: 10, md: 14 }}
+          spacing={5}
+          textAlign="center"
+        >
+          <Badge
+            px={4}
+            py={2}
+            borderRadius="full"
+            colorScheme="cyan"
+            fontSize="sm"
+            letterSpacing="wide"
+          >
+            My Work
+          </Badge>
+
+          <Heading
+            as="h2"
+            fontSize={{
+              base: '3xl',
+              md: '4xl',
+              lg: '5xl',
+            }}
+            lineHeight="1.2"
+          >
+            Projects that demonstrate my experience
+          </Heading>
+
+          <Text
+            color={secondaryText}
+            fontSize={{ base: 'md', md: 'lg' }}
+            lineHeight="1.8"
+          >
+            A selection of web, mobile, desktop and AI-supported
+            applications I have designed, developed or contributed to.
+          </Text>
+        </VStack>
+
+        <SimpleGrid
+          columns={{
+            base: 1,
+            md: 2,
+            xl: 3,
+          }}
+          spacing={{ base: 6, md: 8 }}
+          alignItems="stretch"
+        >
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.title}
+              project={project}
+            />
+          ))}
+        </SimpleGrid>
+      </Container>
+    </Box>
+  );
+}
+
+export default Projects;

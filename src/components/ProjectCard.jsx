@@ -1,78 +1,234 @@
+import { useState } from 'react';
+
 import {
+  Badge,
   Box,
+  Button,
   Heading,
-  Text,
-  Link,
   HStack,
+  Image,
+  Tag,
+  Text,
   useColorModeValue,
+  VStack,
+  Wrap,
+  WrapItem,
 } from '@chakra-ui/react';
-import { FaGithub } from 'react-icons/fa';
 
-// Adding colors to the map
-const languageColors = {
-  javascript: 'yellow.400',
-  typescript: 'blue.500',
-  python: 'blue.200',
-  java: 'orange.400',
-  csharp: 'green.500',
-  sql: 'red.400',
-  react: 'cyan.400',
-  css: 'purple.400', 
-  html: 'orange.500', 
-  default: 'green.500',
-};
+import {
+  FaExternalLinkAlt,
+  FaGithub,
+} from 'react-icons/fa';
 
-// Adding of languages
-export const ProjectCard = ({ title, description, href, languages }) => {
-  const cardBg = useColorModeValue('white', 'gray.800');
+function ProjectCard({ project }) {
+  const [imageAvailable, setImageAvailable] = useState(
+    Boolean(project.image),
+  );
+
+  const cardBackground = useColorModeValue(
+    'white',
+    'whiteAlpha.100',
+  );
+
+  const cardBorder = useColorModeValue(
+    'gray.200',
+    'whiteAlpha.200',
+  );
+
+  const secondaryText = useColorModeValue(
+    'gray.600',
+    'gray.300',
+  );
+
+  const tagBackground = useColorModeValue(
+    'gray.100',
+    'whiteAlpha.100',
+  );
+
+  const sourceButtonBackground = useColorModeValue(
+    'gray.100',
+    'whiteAlpha.100',
+  );
 
   return (
-    <Link
-      href={href}
-      isExternal
-      _hover={{ textDecoration: 'none' }}
-      role="group"
+    <Box
+      bg={cardBackground}
+      border="1px solid"
+      borderColor={cardBorder}
+      borderRadius="2xl"
+      overflow="hidden"
+      boxShadow="sm"
+      display="flex"
+      flexDirection="column"
+      height="100%"
+      transition="all 0.3s ease"
+      _hover={{
+        transform: 'translateY(-8px)',
+        boxShadow: '2xl',
+        borderColor: 'cyan.400',
+      }}
     >
+      {/* Project screenshot or gradient placeholder */}
       <Box
-        p={5}
-        shadow="md"
-        borderWidth="1px"
-        borderRadius="lg"
-        bg={cardBg}
-        transition="all 0.2s"
-        _hover={{ shadow: 'lg', transform: 'translateY(-2px)' }}
-        height="100%" 
-        display="flex"
-        flexDirection="column"
-        justifyContent="space-between" 
+        position="relative"
+        height={{ base: '210px', md: '220px' }}
+        overflow="hidden"
+      >
+        {imageAvailable ? (
+          <Image
+            src={project.image}
+            alt={`${project.title} project interface`}
+            width="100%"
+            height="100%"
+            objectFit="cover"
+            transition="transform 0.4s ease"
+            onError={() => setImageAvailable(false)}
+            _groupHover={{
+              transform: 'scale(1.05)',
+            }}
+          />
+        ) : (
+          <Box
+            width="100%"
+            height="100%"
+            bgGradient={project.gradient}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            px={6}
+          >
+            <Heading
+              color="white"
+              textAlign="center"
+              fontSize={{ base: '2xl', md: '3xl' }}
+            >
+              {project.title}
+            </Heading>
+          </Box>
+        )}
+
+        <Box
+          position="absolute"
+          inset={0}
+          bgGradient="linear(to-t, blackAlpha.600, transparent)"
+          pointerEvents="none"
+        />
+
+        <Badge
+          position="absolute"
+          top={4}
+          left={4}
+          px={3}
+          py={1.5}
+          borderRadius="full"
+          colorScheme={
+            project.status === 'Featured'
+              ? 'cyan'
+              : project.status === 'Recent'
+                ? 'purple'
+                : 'orange'
+          }
+          boxShadow="md"
+        >
+          {project.status}
+        </Badge>
+      </Box>
+
+      {/* Card content */}
+      <VStack
+        align="stretch"
+        spacing={4}
+        p={{ base: 5, md: 6 }}
+        flex={1}
       >
         <Box>
-          <HStack justify="space-between" mb={3}>
-            <Heading fontSize="xl" as="h3">{title}</Heading>
-            <FaGithub size="1.2em" />
-          </HStack>
-          <Text mb={4}>{description}</Text>
+          <Text
+            color="cyan.400"
+            fontSize="sm"
+            fontWeight="bold"
+            textTransform="uppercase"
+            letterSpacing="wide"
+            mb={2}
+          >
+            {project.category}
+          </Text>
+
+          <Heading
+            as="h3"
+            fontSize={{ base: 'xl', md: '2xl' }}
+            lineHeight="1.3"
+          >
+            {project.title}
+          </Heading>
         </Box>
 
-        {/* Languages array exists and maping */}
-        {languages && languages.length > 0 && (
-          <HStack spacing={4} wrap="wrap"> 
-            {languages.map((lang) => {
-              const langColor =
-                languageColors[lang?.toLowerCase()] || languageColors.default;
+        <Text
+          color={secondaryText}
+          fontSize="sm"
+          lineHeight="1.8"
+          flex={1}
+        >
+          {project.description}
+        </Text>
 
-              return (
-                <HStack key={lang} spacing={2} align="center">
-                  <Box as="span" h="12px" w="12px" borderRadius="full" bg={langColor} />
-                  <Text fontSize="sm" fontWeight="medium">
-                    {lang}
-                  </Text>
-                </HStack>
-              );
-            })}
-          </HStack>
-        )}
-      </Box>
-    </Link>
+        <Wrap spacing={2}>
+          {project.technologies.map((technology) => (
+            <WrapItem key={`${project.title}-${technology}`}>
+              <Tag
+                px={3}
+                py={1.5}
+                bg={tagBackground}
+                borderRadius="full"
+                fontSize="xs"
+                fontWeight="semibold"
+              >
+                {technology}
+              </Tag>
+            </WrapItem>
+          ))}
+        </Wrap>
+
+        <HStack
+          spacing={3}
+          pt={2}
+          width="100%"
+        >
+          <Button
+            as="a"
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            leftIcon={<FaGithub />}
+            bg={sourceButtonBackground}
+            variant="solid"
+            flex={1}
+            _hover={{
+              transform: 'translateY(-2px)',
+            }}
+          >
+            Source
+          </Button>
+
+          {project.demo && (
+            <Button
+              as="a"
+              href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              leftIcon={<FaExternalLinkAlt />}
+              colorScheme="cyan"
+              flex={1}
+              _hover={{
+                transform: 'translateY(-2px)',
+              }}
+            >
+              Live Demo
+            </Button>
+          )}
+        </HStack>
+      </VStack>
+    </Box>
   );
-};
+}
+
+export default ProjectCard;
